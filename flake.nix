@@ -15,7 +15,7 @@
 
     devShells = forAllSystems (pkgs: {
       default = pkgs.mkShell {
-        packages = with pkgs; [gcc];
+        packages = with pkgs; [gcc clang-tools];
       };
     });
 
@@ -23,7 +23,7 @@
       default = pkgs.stdenv.mkDerivation {
         name = "hirji";
         src = ./.;
-        buildInputs = [pkgs.gcc];
+        buildInputs = [pkgs.gcc pkgs.clang];
 
         buildPhase = ''
           gcc -o hirji ummalqura.c
